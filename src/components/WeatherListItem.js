@@ -4,6 +4,9 @@ class WeatherListItem extends Component {
   constructor(props) {
     super(props);
     this.state = {};
+
+    this.onClick = this.onClick.bind(this);
+    this.getWeekday = this.getWeekday.bind(this);
   }
 
   render() {
@@ -11,12 +14,23 @@ class WeatherListItem extends Component {
     const date = new Date(forecastDay.dt * 1000);
     const weekday = this.getWeekday(date);
     return (
-      <div class="weather-list-item">
-        <h2>{date.getMonth() + 1} / {date.getDate()}</h2><h3>{weekday}</h3>
-        <h3>{forecastDay.minTemp.toFixed(1)}&deg;F &#124;
-    {forecastDay.maxTemp.toFixed(1)}&deg;F</h3>
+      <div className="weather-list-item" onClick={this.onClick}>
+        <h2>{date.getMonth() + 1} / {date.getDate()}</h2>
+        <h3>{weekday}</h3>
+        <h3>{forecastDay.minTemp.toFixed(1)}&deg;F &#124; {forecastDay.maxTemp.toFixed(1)}&deg;F</h3>
       </div>
     );
+  }
+
+  onClick() {
+    const { onDayClicked, index } = this.props;
+    onDayClicked(index);
+  }
+
+  getWeekday(date) {
+    const dayNames = ['Sunday','Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+    const weekday = date.getDay();
+    return dayNames[weekday];
   }
 }
 
