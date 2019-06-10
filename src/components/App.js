@@ -4,6 +4,8 @@ import ZipForm from './ZipForm';
 import WeatherList from './WeatherList';
 // import WeatherListItem from "./WeatherListItem";
 import CurrentDay from './CurrentDay';
+require('dotenv').config();
+
 
 class App extends Component {
   constructor(props) {
@@ -18,9 +20,9 @@ class App extends Component {
     };
 
     this.url = "http://api.openweathermap.org/data/2.5/forecast?zip=";
-    this.apikey = "";
+    this.apikey = process.env.REACT_APP_WTHR_KEY;
 
-    this.googleApiKey = "";
+    this.googleApiKey = process.env.REACT_APP_GMAP_KEY;
     this.googleMapsUrl = "https://maps.googleapis.com/maps/api/timezone/json?location=";
 
     this.onFormSubmit = this.onFormSubmit.bind(this);

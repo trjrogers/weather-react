@@ -4,7 +4,7 @@ class CurrentDay extends Component {
   constructor (props) {
     super(props);
     this.state = {};
-
+    console.log(JSON.stringify(props));
     this.getWeekday = this.getWeekday.bind(this);
   }
 
@@ -22,7 +22,7 @@ class CurrentDay extends Component {
                 <img src={`http://openweathermap.org/img/w/${forecastDay.icon}.png`} alt={forecastDay.description}/>
                 {forecastDay.description}
             </p>
-            </div>
+        </div>
         <div className="details flex-parent">
             <div className="temperature-breakdown">
             <p>Morning Temperature: {forecastDay.morningTemp}&deg;F</p>
@@ -33,7 +33,7 @@ class CurrentDay extends Component {
             <div className="misc-details">
             <p>Atmospheric Pressure: {forecastDay.pressure} hPa</p>
             <p>Humidity: {forecastDay.humidity}%</p>
-            <p>Wind Speed: {forecastDay.wind} mph</p>
+            <p>Wind Speed: {forecastDay.wind.speed} mph</p>
             </div>
         </div>
         </div>
